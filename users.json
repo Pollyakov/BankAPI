@@ -1,0 +1,21 @@
+[
+  {
+    "passport_id": "314",
+    "name": "Ksushen'ka",
+    "cash": { "cash": "10000" },
+    "credit": "-5000"
+  },
+  {
+    "passport_id": "002",
+    "name": "Jimmy The Cat",
+    "cash": "1000",
+    "credit": "0"
+  },
+  { "passport_id": "315", "name": "Inna", "cash": "12000", "credit": "-30000" },
+  {
+    "passport_id": "316",
+    "name": "Sonya",
+    "cash": "37000",
+    "credit": "-100000"
+  }
+]
