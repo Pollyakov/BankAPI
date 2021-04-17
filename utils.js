@@ -39,15 +39,52 @@ const deposit = (id, cash) => {
     if (userToUpdate!==-1) {
         const editedUser = {
            ...userToUpdate,
-           cash: cash || userToUpdate.cash,
+           "cash": cash || userToUpdate.cash,
         };
         currentUsersData.splice(userToUpdate, 1, editedUser);
         save(currentUsersData);
         console.log("Edited User:", editedUser);
     };
-    
-  
 };
+
+//update credit
+const updateCredit = (id, credit) => {
+  const currentUsersData = load();
+  let userToUpdate = findUser(id);
+  if (userToUpdate!==-1) {
+      const editedUser = {
+         ...userToUpdate,
+         "credit": credit || userToUpdate.credit,
+      };
+      currentUsersData.splice(userToUpdate, 1, editedUser);
+      save(currentUsersData);
+      console.log("Edited User:", editedUser);
+  };
+};
+//Withdraw money
+const withdraw = (id, withdraw)=> {
+  const currentUsersData = load();
+  const userIndex = currentUsersData.findIndex((el) => el.id === id);
+  const user = currentUsersData.find((el) => el.id === id);
+  console.log("user index", userIndex);
+  console.log("user", user);
+  if (user!==-1) {
+    
+    const editedUser = {
+       ...user,
+       "credit": credit || user.credit,
+    };
+    currentUsersData.splice(user, 1, editedUser);
+    save(currentUsersData);
+    console.log("Edited User:", editedUser);
+};
+
+
+}
+
+
+
+
 
 const save = (users) => {
     const dataJSON = JSON.stringify(users);
@@ -70,4 +107,6 @@ module.exports = {
   findUser,
   createUser,
   deposit,
+  updateCredit,
+  withdraw,
 };
