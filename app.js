@@ -50,15 +50,13 @@ app.put("/api/users/credit/:id", (req,res)=> {
  app.put("/api/users/withdraw/:id", (req,res)=> {
     const {id} = req.params;
     const sum= req.body.sum;
-    console.log(withdraw);
+    console.log("Sum", sum);
      const editedUser = withdraw(id, sum);
      res.status(201).send(editedUser);
  })
 
 
 //QUERY 
-
-
 
 const PORT = 3000;
 app.listen(PORT, ()=> {

@@ -62,23 +62,25 @@ const updateCredit = (id, credit) => {
   };
 };
 //Withdraw money
-const withdraw = (id, withdraw)=> {
+const withdraw = (id, sum)=> {
   const currentUsersData = load();
   const userIndex = currentUsersData.findIndex((el) => el.id === id);
   const user = currentUsersData.find((el) => el.id === id);
   console.log("user index", userIndex);
   console.log("user", user);
-  if (user!==-1) {
+  if (user==-1) {
+    throw new Error("The user doesn't exist");
+  };
+  const max = user.credit + user.cash;
+  console.log("user cash and credit",user.cash, user.credit);
     
     const editedUser = {
        ...user,
-       "credit": credit || user.credit,
+       "cash": user.cash - sum, 
     };
     currentUsersData.splice(user, 1, editedUser);
     save(currentUsersData);
     console.log("Edited User:", editedUser);
-};
-
 
 }
 
