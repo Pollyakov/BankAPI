@@ -1,10 +1,12 @@
 const express = require("express");
+const cors = require ("cors");
 const app = express();
 const {findUsers, findUser, createUser, 
     deposit, updateCredit, withdraw } = require ("./utils");
 
 //makes express to understand json:
 app.use(express.json());
+app.use(cors());
 
 app.get("/api/users", (req,res)=> {
     const users = findUsers();
@@ -19,8 +21,11 @@ app.get("/api/users/query", (req,res)=> {
 app.get("/api/users/:id/", (req,res) => {
     //how to get params
     const {id} = req.params;
+    console.log(id);
     const user = findUser(id);
-    res.sendStatus(200).send(user);
+    console.log(user);
+    res.status(200).send(user);
+    res.end();
 });
 //creating an user
 app.post("/api/users", (req,res)=> {
@@ -49,16 +54,15 @@ app.put("/api/users/credit/:id", (req,res)=> {
  //withdraw
  app.put("/api/users/withdraw/:id", (req,res)=> {
     const {id} = req.params;
-    const sum= req.body.sum;
+    const sum = req.body.sum;
     console.log("Sum", sum);
      const editedUser = withdraw(id, sum);
      res.status(201).send(editedUser);
  })
 
 
-//QUERY 
 
-const PORT = 3000;
+const PORT = 5000;
 app.listen(PORT, ()=> {
     console.log("Listening");
 });
